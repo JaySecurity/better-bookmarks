@@ -1,0 +1,28 @@
+{
+  "name": "better-bookmarks",
+  "version": "1.0.0",
+  "description": "Bookmarks but better.",
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node build.cjs"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@esbuild-plugins/node-modules-polyfill": "^0.2.2",
+    "@types/chrome": "^0.0.304",
+    "@types/node": "^22.13.4",
+    "chrome-types": "^0.1.246",
+    "esbuild": "^0.25.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.3.2"
+  },
+  "dependencies": {},
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
+  }
+}

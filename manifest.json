@@ -1,0 +1,26 @@
+{
+  "name": "Better Bookmarks",
+  "description": "Sort, Search and Tag your bookmarks.",
+  "version": "1.0",
+  "manifest_version": 3,
+  "icons": {
+    "48": "assets/icons/bookmark_icon_blue_48.png",
+    "128": "assets/icons/bookmark_icon_blue_128.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "48": "assets/icons/bookmark_icon_blue_48.png",
+      "128": "assets/icons/bookmark_icon_blue_128.png"
+    }
+  },
+  "background": {
+    "service_worker": "assets/js/background.js"
+  },
+  "permissions": [
+    "notifications",
+    "contextMenus",
+    "storage",
+    "activeTab"
+  ]
+}

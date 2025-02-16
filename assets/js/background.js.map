@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../src/background.ts"],
+  "sourcesContent": ["chrome.runtime.onMessage.addListener(data => {\n  if (data.type === 'notification') {\n    notify(data.message);\n  }\n});\n\nchrome.runtime.onInstalled.addListener(() => {\n  chrome.contextMenus.create({\n    id: 'notify',\n    title: \"Notify!: %s\",\n    contexts: [\"selection\"]\n  });\n});\n\nchrome.contextMenus.onClicked.addListener((info, tab) => {\n  console.log(tab);\n  if ('notify' === info.menuItemId) {\n    notify(info.selectionText);\n  }\n});\n\nconst notify = message => {\n  return chrome.notifications.create(\n    '',\n    {\n      type: 'basic',\n      title: 'Notify!',\n      message: message || 'Notify!',\n      iconUrl: '../icons/bookmark_icon_blue_48.png',\n    }\n  );\n};\n"],
+  "mappings": ";;;AAAA,SAAO,QAAQ,UAAU,YAAY,UAAQ;AAC3C,QAAI,KAAK,SAAS,gBAAgB;AAChC,aAAO,KAAK,OAAO;AAAA,IACrB;AAAA,EACF,CAAC;AAED,SAAO,QAAQ,YAAY,YAAY,MAAM;AAC3C,WAAO,aAAa,OAAO;AAAA,MACzB,IAAI;AAAA,MACJ,OAAO;AAAA,MACP,UAAU,CAAC,WAAW;AAAA,IACxB,CAAC;AAAA,EACH,CAAC;AAED,SAAO,aAAa,UAAU,YAAY,CAAC,MAAM,QAAQ;AACvD,YAAQ,IAAI,GAAG;AACf,QAAI,aAAa,KAAK,YAAY;AAChC,aAAO,KAAK,aAAa;AAAA,IAC3B;AAAA,EACF,CAAC;AAED,MAAM,SAAS,aAAW;AACxB,WAAO,OAAO,cAAc;AAAA,MAC1B;AAAA,MACA;AAAA,QACE,MAAM;AAAA,QACN,OAAO;AAAA,QACP,SAAS,WAAW;AAAA,QACpB,SAAS;AAAA,MACX;AAAA,IACF;AAAA,EACF;",
+  "names": []
+}
