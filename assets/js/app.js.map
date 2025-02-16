@@ -1,7 +1,7 @@
 {
   "version": 3,
   "sources": ["../../src/app.ts"],
-  "sourcesContent": ["\n\nconst text = document.getElementById('notify-text') as HTMLInputElement;\nconst notify = document.getElementById('notify-button') as HTMLButtonElement;\n\n\nif (!text || !notify) {\n  //process.exit()\n  console.error(\"Error loading page elements\")\n}\n\nnotify.addEventListener('click', () => {\n  chrome.runtime.sendMessage('', {\n    type: 'notification',\n    message: text.value\n  });\n});\n\n\n"],
-  "mappings": ";;;AAEA,MAAM,OAAO,SAAS,eAAe,aAAa;AAClD,MAAM,SAAS,SAAS,eAAe,eAAe;AAGtD,MAAI,CAAC,QAAQ,CAAC,QAAQ;AAEpB,YAAQ,MAAM,6BAA6B;AAAA,EAC7C;AAEA,SAAO,iBAAiB,SAAS,MAAM;AACrC,WAAO,QAAQ,YAAY,IAAI;AAAA,MAC7B,MAAM;AAAA,MACN,SAAS,KAAK;AAAA,IAChB,CAAC;AAAA,EACH,CAAC;",
+  "sourcesContent": ["\n\nconst text = document.getElementById('search') as HTMLInputElement;\nconst search = document.getElementById('search-btn') as HTMLButtonElement;\n\n\nif (!text || !search) {\n  //process.exit()\n  console.error(\"Error loading page elements\")\n}\n\nsearch.addEventListener('click', () => {\n  chrome.bookmarks.getTree(res => {\n    const tree = res[0].children[0].children\n    if (tree && tree?.length > 0) {\n      for (const node of tree) {\n        console.log(node?.title == \"\" ? \"Bookmarks\" : `${node?.title} - ${node.id}`)\n      }\n    }\n  })\n});\n\nchrome.runtime.sendMessage(\"Test Meaasge\")\n"],
+  "mappings": ";;;AAEA,MAAM,OAAO,SAAS,eAAe,QAAQ;AAC7C,MAAM,SAAS,SAAS,eAAe,YAAY;AAGnD,MAAI,CAAC,QAAQ,CAAC,QAAQ;AAEpB,YAAQ,MAAM,6BAA6B;AAAA,EAC7C;AAEA,SAAO,iBAAiB,SAAS,MAAM;AACrC,WAAO,UAAU,QAAQ,SAAO;AAC9B,YAAM,OAAO,IAAI,CAAC,EAAE,SAAS,CAAC,EAAE;AAChC,UAAI,QAAQ,MAAM,SAAS,GAAG;AAC5B,mBAAW,QAAQ,MAAM;AACvB,kBAAQ,IAAI,MAAM,SAAS,KAAK,cAAc,GAAG,MAAM,KAAK,MAAM,KAAK,EAAE,EAAE;AAAA,QAC7E;AAAA,MACF;AAAA,IACF,CAAC;AAAA,EACH,CAAC;AAED,SAAO,QAAQ,YAAY,cAAc;",
   "names": []
 }

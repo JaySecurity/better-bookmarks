@@ -1,25 +1,29 @@
-chrome.runtime.onMessage.addListener(data => {
-  if (data.type === 'notification') {
-    notify(data.message);
-  }
+
+interface MessageData {
+  message: string;
+  sender: chrome.runtime.MessageSender;
+  sendResponse: Function;
+}
+
+chrome.runtime.onMessage.addListener((data: MessageData) => {
+  console.log("Data", data)
 });
 
 chrome.runtime.onInstalled.addListener(() => {
   chrome.contextMenus.create({
-    id: 'notify',
-    title: "Notify!: %s",
-    contexts: ["selection"]
+    id: 'better-bookmarks',
+    title: "Add Bookmark",
+    contexts: ["page"]
   });
 });
 
 chrome.contextMenus.onClicked.addListener((info, tab) => {
-  console.log(tab);
-  if ('notify' === info.menuItemId) {
-    notify(info.selectionText);
+  if ('better-bookmarks' === info.menuItemId) {
+    notify(tab?.url || "");
   }
 });
 
-const notify = message => {
+const notify = (message: string) => {
   return chrome.notifications.create(
     '',
     {
