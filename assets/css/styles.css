@@ -1,9 +1,20 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+
+}
+
 body {
-  width: 650px;
-  border: 1px solid #993523;
+  width: 785px;
+  height: 100%;
+  scrollbar-gutter: stable;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 #container {
+  width: 100%;
   padding: .25rem;
 }
 
@@ -11,6 +22,14 @@ body {
   font-size: 12px;
   margin: 0;
   margin-bottom: 10px;
+}
+
+.form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
 }
 
 .button {
@@ -24,7 +43,7 @@ body {
   display: inline-flex;
   flex-shrink: 0;
   font-weight: 500;
-  height: 32px;
+  height: 42px;
   justify-content: center;
   min-width: 5.14em;
   outline-width: 0;
@@ -32,7 +51,6 @@ body {
   position: relative;
   user-select: none;
   background: white;
-  margin: 10px 0 5px 10px;
 }
 
 .buttons {
@@ -58,15 +76,84 @@ body {
     0 1px 3px 1px rgba(66, 133, 244, 0.15);
 }
 
+.button.delete {
+  background: rgb(232, 17, 17);
+  color: #fff;
+  border-color: rgb(232, 17, 17);
+  justify-self: flex-end;
+}
+
+.button.delete:hover {
+  background: rgba(232, 17, 17, 0.9);
+  box-shadow: 0 1px 2px 0 rgba(66, 133, 244, 0.3),
+    0 1px 3px 1px rgba(66, 133, 244, 0.15);
+}
+
+.button.edit,
+.button.delete {
+  margin-left: .7rem;
+}
+
 input[type="text"] {
   border: 2px solid rgba(26, 115, 232, 0.4);
   padding: 8px;
   border-radius: 4px;
   display: block;
-  width: 224px;
-  margin-top: 5px;
+  width: 80%;
+  height: 42px;
+  margin: 5px 0;
 }
 
-.buttons p {
-  margin: 10px 0 5px 10px;
+.results {
+  width: 100%;
+  padding: .75rem .5rem;
+}
+
+.result-div {
+  width: 100%;
+  border: 1px solid rgba(26, 115, 232, 0.4);
+  border-radius: 4px;
+  padding: .25rem .5rem;
+  margin: .25rem 0;
+  cursor: pointer;
+  position: relative;
+}
+
+.top-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tags-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.show::after {
+  content: var(--tooltip-content);
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  background: black;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  white-space: nowrap;
+  transform: translate(.5rem, -75%);
+  pointer-events: none;
+  transition: transform 0.2s ease-in-out;
+}
+
+.result-title {
+  margin: 0;
+  width: 500px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
