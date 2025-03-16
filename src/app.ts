@@ -149,3 +149,10 @@ function addResults(results: chrome.bookmarks.BookmarkTreeNode[]): void {
 function getTagsById(id: string): string[] {
   return tagsFromId[id] || []
 }
+
+function createTagElement(name: string) {
+  const tag = document.createElement('span')
+  tag.classList.add('tag')
+  tag.innerText = name
+  return tag
+}
